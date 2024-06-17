@@ -15,5 +15,7 @@ urlpatterns = [
     path("HTML", views.HTML_entry, name="HTML"),
     path("Python", views.Python_entry, name="Python"),
     path("Create", views.create_new_page, name="create_new_page"),
+    path("Edit", views.edit_page, name="edit_page"),
+    path("Save", views.save_edit_page, name="save_edit_page"),
     path("<str:title>", views.dynamic_entry, name="dynamic_entry")
 ]

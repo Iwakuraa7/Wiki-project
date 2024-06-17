@@ -34,44 +34,55 @@ def index(request):
                 return HttpResponseRedirect(f"{value}")
             else:
                 return render(request, "encyclopedia/mathces.html", {
-                "matches": matches
+                "matches": matches,
+                "query": value
             })
 
 def CSS_entry(request):
     content = markdown(util.get_entry("CSS"))
+    title = "CSS"
     return render(request, "encyclopedia/CSS.html", {
-        "content": content
+        "content": content,
+        "title": title
     })
 
 
 def Django_entry(request):
     content = markdown(util.get_entry("Django"))
+    title = "Django"
     return render(request, "encyclopedia/Djangp.html", {
-        "content": content
+        "content": content,
+        "title": title
     })
 
 
 def Git_entry(request):
     content = markdown(util.get_entry("Git"))
+    title = "Git"
     return render(request, "encyclopedia/Git.html", {
-        "content": content
+        "content": content,
+        "title": title
     })
 
 
 def HTML_entry(request):
     content = markdown(util.get_entry("HTML"))
+    title = "HTML"
     return render(request, "encyclopedia/HTML.html", {
-        "content": content
+        "content": content,
+        "title": title
     })
 
 def Python_entry(request):
     content = markdown(util.get_entry("Python"))
+    title = "Python"
     return render(request, "encyclopedia/Python.html", {
-        "content": content
+        "content": content,
+        "title": title
     })
 
-def new_entry(request, title):
-    return render(request, f"encyclopedia/{title}.html")
+# def new_entry(request, title):
+#     return render(request, f"encyclopedia/{title}.html")
 
 def dynamic_entry(request, title):
     md_filepath = os.path.join(settings.BASE_DIR, "entries", f"{title}.md")
@@ -94,7 +105,7 @@ def create_new_page(request):
                 })
         content = request.POST.get("content")
 
-        md_string = f"# {title}\n\n{content}"
+        md_string = f"{content}"
         md_filepath = os.path.join(settings.BASE_DIR, "entries", f"{title}.md")
         with open(md_filepath, "w") as md_file:
             md_file.write(md_string)
@@ -104,3 +115,20 @@ def create_new_page(request):
         return HttpResponseRedirect(f"/wiki/{title}")
     else:
         return render(request, "encyclopedia/create_entry_page.html")
+
+def edit_page(request):
+    if request.method == "POST":
+        title = request.POST.get("title")
+        md_string = (util.get_entry(request.POST.get("title")))
+        return render(request, "encyclopedia/edit_page.html", {
+            "content": md_string,
+            "title": title
+        })
+
+def save_edit_page(request):
+    if request.method == "POST":
+        edit_md_string = request.POST.get("edit_content")
+        title = request.POST.get("title")
+
+        util.save_entry(title, edit_md_string)
+        return HttpResponseRedirect(f"/wiki/{title}")

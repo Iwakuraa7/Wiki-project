@@ -1,3 +1,3 @@
-# C++
-
-c++
+# C++
+
+[Python](/wiki/Python)
