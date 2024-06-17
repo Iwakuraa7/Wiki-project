@@ -8,8 +8,6 @@
     <h1>Results for "{{ query }}":</h1>
 
     {% for match in matches %}
-{#            <li><a href="{{ match }}">{{ match }}</a></li>#}
-        <li><a href={% url match %}>{{ match }}</a></li>
+        <li><a href="{{ match }}">{{ match }}</a></li>
     {% endfor %}
-
 {% endblock %}

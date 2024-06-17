@@ -9,7 +9,6 @@ import random
 entries = util.list_entries()
 
 def index(request):
-    # entries = util.list_entries()
     matches = []
     if request.method == "GET":
         value = request.GET.get("q", "")
@@ -102,7 +101,6 @@ def create_new_page(request):
         md_filepath = os.path.join(settings.BASE_DIR, "entries", f"{title}.md")
         with open(md_filepath, "w") as md_file:
             md_file.write(md_string)
-        # util.save_entry(f"{title}", content)
 
         entries.append(title)
         return HttpResponseRedirect(f"/wiki/{title}")
@@ -129,12 +127,6 @@ def save_edit_page(request):
 def random_page(request):
     rand_index = random.randint(0, len(entries) - 1)
     return HttpResponseRedirect(f"/wiki/{entries[rand_index]}")
-    # content = markdown(util.get_entry(entries[rand_index]))
-    # title = entries[rand_index]
-    # return render(request, f"encyclopedia/{entries[rand_index]}", {
-    #     "content": content,
-    #     "title": title
-    # })
 
 def page_not_found(request):
     return render(request, "encyclopedia/Page_not_found.html", {

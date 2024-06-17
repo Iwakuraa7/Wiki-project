@@ -1,3 +1,5 @@
 #C++
 
-[Git](/wiki/Git)
+
+
+[Git](/wiki/Git) negir
