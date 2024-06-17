@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>All Pages</h1>
+
+    <ul>
+        {% for entry in entries %}
+            {% if forloop.counter > 5 %}
+                <li><a href="{{ entry }}">{{ entry }}</a></li>
+            {% else %}    
+                <li><a href={% url entry %}>{{ entry }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+{% endblock %}

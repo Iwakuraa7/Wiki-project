@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Git
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'create_new_page' %}" method="post">
+        {% csrf_token %}
+        <h2>Title:</h2>
+        <textarea style="height: 5vh" name="title"></textarea>
+        <h2>Content:</h2>
+        <textarea style="height: 65vh; display: block" name="content"></textarea>
+        <input type="submit" value="Create new page" style="border: none; border-radius: 3px; background-color: #f0f0f0; color: black;
+        height: 35px; margin-top: 10px">
+    </form>
+{% endblock %}

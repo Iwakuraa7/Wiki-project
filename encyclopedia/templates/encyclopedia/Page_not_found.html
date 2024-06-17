@@ -1,0 +1,15 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Page not found
+{% endblock %}
+
+{% block body %}
+    {% if not_found_error_msg %}
+        <h1 style="display:flex; justify-content:center; align-items:center; height: 100vh">{{ not_found_error_msg }}</h1>
+        {% endif %}
+{#    <h1 style="display:flex; justify-content:center; align-items:center; height: 100vh">Page not found...</h1>#}
+    {% if title_error_msg %}
+        <h1 style="display:flex; justify-content:center; align-items:center; height: 100vh">{{ title_error_msg }}</h1>
+        {% endif %}
+{% endblock %}
