@@ -17,5 +17,6 @@ urlpatterns = [
     path("Create", views.create_new_page, name="create_new_page"),
     path("Edit", views.edit_page, name="edit_page"),
     path("Save", views.save_edit_page, name="save_edit_page"),
+    path("Random_page", views.random_page, name="random_page"),
     path("<str:title>", views.dynamic_entry, name="dynamic_entry")
 ]
